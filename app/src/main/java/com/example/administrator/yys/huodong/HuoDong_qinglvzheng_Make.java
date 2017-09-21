@@ -77,9 +77,7 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(HuoDong_qinglvzheng_Make.this,HuoDong_qinglvzheng_MakeImg.class);
-                startActivity(intent);
+
             }
         });
 

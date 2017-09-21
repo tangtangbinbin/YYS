@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
-    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -217,8 +215,6 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".wode.WoDe_SheZhi_ZhangHao_BandDing"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".huodong.HuoDong_qinglvzheng_MakeImg"
-            android:screenOrientation="portrait"></activity>
         <activity android:name=".huodong.HuoDong_qinglvzheng_Info"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".huodong.HuoDong_qinglvzheng_Make"
@@ -244,6 +240,20 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".view.MyRollViewPager"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
     </application>
 
 </manifest>
