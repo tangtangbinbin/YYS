@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/kongjian_luyin_fanhui"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="31dp"
+                android:src="@mipmap/fanhui" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/kongjian_luyin_baocun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="18dp"
+            android:text="保存"
+            android:textColor="@color/heise"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/luyin_chronometer"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:textColor="@color/chengse"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:textColor="@color/chengse"
+        android:gravity="center"
+        android:text="开始录音"
+        android:textSize="25sp"
+        android:id="@+id/luyin_start"
+        android:background="@drawable/shape_radious_cheng3"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:textColor="@color/chengse"
+            android:id="@+id/luyin_listen"
+            android:background="@drawable/shape_radious_cheng2"
+            android:text="试听"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:id="@+id/luyin_reset"
+            android:textColor="@color/chengse"
+            android:background="@drawable/shape_radious_cheng2"
+            android:text="重来"/>
+            </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保留你最美的声音!"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/chengse"
+        android:layout_marginTop="150dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/luyin_progress"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_small"/>
+    </LinearLayout>
+</RelativeLayout>

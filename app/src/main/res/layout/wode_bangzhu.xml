@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:id="@+id/wode_bangzhu_fanhui"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="31dp"
+                android:src="@mipmap/fanhui" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:id="@+id/wode_bangzhu_rg"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/wode_bangzhu_bangzhu"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:background="#00000000"
+                android:text="帮助"
+                android:textColor="@drawable/selecter_text_color"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/wode_bangzhu_fankui"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="#00000000"
+                android:gravity="center"
+                android:text="反馈"
+                android:textColor="@drawable/selecter_text_color"
+                android:textSize="20dp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@color/huise"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:id="@+id/wode_bangzhu_info"
+            android:layout_marginRight="17dp"
+            android:textSize="15sp"
+            android:text="@string/bangzhu_info"/>
+    </ScrollView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/wode_fankui_edit"
+        android:layout_marginTop="10dp"
+        android:gravity="top|left"
+        android:layout_marginLeft="17dp"
+        android:visibility="gone"
+        android:background="@null"
+        android:hint="请输入你遇到的问题"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:id="@+id/fankui_line"
+        android:background="@color/huise"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/baise"
+        android:background="@drawable/shape_radious_cheng"
+        android:id="@+id/wode_bangzhu_fasong"
+        android:text="提 交"/>
+</LinearLayout>

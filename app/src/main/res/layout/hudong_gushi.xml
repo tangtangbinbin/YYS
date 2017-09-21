@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="17dp"
+    android:layout_marginRight="17dp">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:id="@+id/gushi_swipe"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="#00000000"
+                android:cacheColorHint="#00000000"
+                android:scrollbars="none"
+                android:id="@+id/gushi_listview_list"></ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:id="@+id/hd_gushi_fabiao_img"
+        android:src="@mipmap/fabiao"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
+</LinearLayout>

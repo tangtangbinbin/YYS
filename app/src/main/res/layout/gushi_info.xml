@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/keyboardlistenLinearlayout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/gushi_info_top"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+       <LinearLayout
+           android:layout_width="50dp"
+           android:layout_height="40dp"
+           android:gravity="center"
+           android:id="@+id/gushi_info_fanhui"
+           android:orientation="horizontal">
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="31dp"
+            android:src="@mipmap/fanhui"/>
+
+       </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gushi_jubao"
+            android:text="举报"
+            android:textSize="20dp"
+            android:layout_marginRight="18dp"
+            android:textColor="@color/heise"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/gushi_info_br"
+        android:layout_below="@+id/gushi_info_top"
+        android:background="@color/huise"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/gushi_info_br"
+        android:layout_above="@+id/gushi_info_bottom"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="17dp"
+            android:gravity="center"
+            android:layout_marginRight="17dp"
+            android:orientation="horizontal">
+            <com.example.administrator.yys.view.CircularImage
+                android:layout_width="41.6dp"
+                android:layout_height="41.6dp"
+                android:id="@+id/gushi_info_touxiang1"
+                android:adjustViewBounds="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/authorname"
+                android:layout_marginLeft="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="65.6dp"
+                android:layout_height="34.4dp"
+                android:text="关注"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:id="@+id/gushi_info_guanzhu"
+                android:background="@drawable/shape_radious_cheng"
+                android:textColor="@color/baise"/>
+        </LinearLayout>
+
+            <!-- 故事内容-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
+                android:id="@+id/gushi_info_id">
+
+            </LinearLayout>
+
+            <!--评论内容-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:id="@+id/gushi_pinglun_lin"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/gushi_info_bottom"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/huise"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginLeft="17dp"
+            android:gravity="center_vertical"
+            android:layout_marginRight="17dp">
+
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="35dp"
+            android:id="@+id/gushi_info_input"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_radious_black2"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="输入内容"
+                android:textSize="15sp"
+                android:id="@+id/gushi_info_edit"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pinlun_top"
+            android:src="@mipmap/pinlun_top"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zan1"
+            android:id="@+id/zan"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/schang1"
+            android:id="@+id/schang"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fenxiang"
+            android:id="@+id/fenxiang"
+            android:layout_weight="1"/>
+        </LinearLayout>
+        </LinearLayout>
+
+</RelativeLayout>

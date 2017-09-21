@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baise"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/hudong_rg"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/hudong_gushi"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:background="#00000000"
+            android:drawableBottom="@drawable/selecter_gushi_img"
+            android:gravity="center"
+            android:text="故事"
+            android:textColor="@drawable/selecter_text_color"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/hudong_wenda"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="#00000000"
+            android:drawableBottom="@drawable/selecter_gushi_img"
+            android:gravity="center"
+            android:text="问答"
+            android:textColor="@drawable/selecter_text_color"
+            android:textSize="20dp" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/hudong_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

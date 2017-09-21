@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="31dp"
+            android:src="@mipmap/fanhui"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textSize="20dp"
+            android:textColor="@color/heise"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="身份验证"
+            android:textColor="@color/heise"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/huise" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:gravity="center"
+        android:background="@drawable/shape_border_gray"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@null"
+            android:hint="请输入自己的帐号"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="以下成员任选其一"
+        android:textColor="@color/chengse"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="17dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_border_gray"
+                android:orientation="vertical">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:hint="家人帐号"
+                    android:background="@null"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="34dp"
+                android:text="验证身份"
+                android:textColor="@color/baise"
+                android:background="@color/huise"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_border_gray"
+                android:orientation="vertical">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:hint="爱人帐号"
+                    android:background="@null"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="34dp"
+                android:text="验证身份"
+                android:textColor="@color/baise"
+                android:background="@color/huise"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_border_gray"
+                android:orientation="vertical">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:hint="朋友帐号"
+                    android:background="@null"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="34dp"
+                android:text="验证身份"
+                android:textColor="@color/baise"
+                android:background="@color/huise"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="完成"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/baise"
+        android:gravity="center"
+        android:background="@color/huise"/>
+</LinearLayout>

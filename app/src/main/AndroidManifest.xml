@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="2"
+    android:versionName="1.1"
+    package="com.example.administrator.yys">
+
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon"
+        android:label="@string/app_name"
+        android:name=".utils.MyApplication"
+        android:hardwareAccelerated="false"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.administrator.yys.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent1106258553" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.administrator.yys.wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <meta-data android:name="Mob-AppKey" android:value="1ffbe05da34c2"/>
+        <meta-data android:name="Mob-AppSecret" android:value="37fb686014a25b99e2fab532fc75ec85"/>
+
+
+
+        <activity android:name=".Splash.Splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".account.Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            <activity android:name=".account.Register"/>
+        <activity android:name=".account.Account_vfPhone"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".account.Account_vfPersion"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".other.Other_index"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".hudong.GuShi_Info"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".hudong.WenDa_Info"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".kongjian.KongJian_Info"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".kongjian.KongJian_SheZhi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+        <activity android:name=".kongjian.KongJian_SheZhi_Name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".kongjian.KongJian_SheZhi_Desc"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".kongjian.KongJian_ChuangJian"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name=".kongjian.KongJian_BianJi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_GuanZhu"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_FenSi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_ShouChang"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_GuShi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_WenDa"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_CaoGao"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+         <activity android:name=".wode.WoDe_TongZhi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_BangZhu"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".wode.WoDe_SheZhi"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".kongjian.KongJian_XiangCe"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".kongjian.KongJian_YaoQing"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".kongjian.KongJian_SetPassword"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name=".kongjian.KongJian_GetPassword"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name=".kongjian.KongJian_UpdatePassword"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name=".kongjian.KongJian_GuShi_GeRen"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.KongJian_GuShi_GeRen_XiuGai"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.KongJian_XiangCe2"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.LookImage"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.KongJian_GuShi_JAY"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.InitSpace"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity android:name=".kongjian.KongJian_SheZhi_TouXiang"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.Kongjian_ChengYuan"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_GuanYu"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".hudong.GuShi_BianJi"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".hudong.WenDa_BianJi"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".hudong.HuDong_InPut"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".kongjian.KongJian_InPut"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".hudong.HuDong_FenXiang"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".view.ShowDialog"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity android:name=".view.ShowDialog2"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity android:name=".view.ShowDialog3"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity android:name=".wode.WoDe_GuShi_XiuGai"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.BigPhoto"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_CaoGao_XiuGai"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_SheZhi_ZiLiao"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_sheZhi_ZhangHao"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_SheZhi_ZhangHao_BandDing"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".huodong.HuoDong_qinglvzheng_MakeImg"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".huodong.HuoDong_qinglvzheng_Info"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".huodong.HuoDong_qinglvzheng_Make"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.KongJian_LuYin"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_SheZhi_ZhangHao_XiuGai"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".account.ReSet_PassWord"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".kongjian.KongJian_shenJi"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.MusicList"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".account.YongHuXieYi"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".utils.SelectPicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".view.MyRollViewPager"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+    </application>
+
+</manifest>

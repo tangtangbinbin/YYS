@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:id="@+id/register_fanhui"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="31dp"
+            android:src="@mipmap/fanhui"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/login_icon"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shape_radious_black"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/register_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="手机/QQ/微信/邮箱帐号"
+            android:background="@null"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_radious_black"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="设置密码"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:id="@+id/register_setpass"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_radious_black"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="确认密码"
+            android:id="@+id/register_resetpass"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="注册"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/baise"
+            android:background="@drawable/shape_radious_login"
+            android:id="@+id/register_btn"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册即代表阅读并同意"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_yonghuxieyi"
+            android:text="用户协议"
+            android:textColor="@color/chengse"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="baise">#ffffff</color>
+    <color name="screenbai">#fafafa</color>
+    <color name="chengse">#f08f1d</color>
+    <color name="zhongse">#6a4923</color>
+    <color name="huise">#999999</color>
+    <color name="heise">#000000</color>
+    <color name="kj_huise">#cccccc</color>
+    <color name="kj_chengse">#f3c295</color>
+    <color name="kj_fense">#f7d2e1</color>
+    <color name="kj_lvse">#c7e5bc</color>
+    <color name="wd_huise">#e5e4e4</color>
+    <color name="huihei">#333333</color>
+    <color name="transparent">#00000000</color>
+    <color name="qianhui">#cccccc</color>
+    <color name="qianhuitm">#cccccc</color>
+
+
+</resources>

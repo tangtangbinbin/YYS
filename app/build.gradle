@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.example.administrator.yys"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 5
+        versionName "1.4"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            //混淆
+            minifyEnabled true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            //signingConfig signingConfigs.relealse
+            // 移除无用的resource文件
+            //shrinkResources true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError true
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
+    compile 'org.xutils:xutils:3.5.0'
+    compile 'me.iwf.photopicker:PhotoPicker:0.1.8'
+    compile 'com.github.bumptech.glide:glide:3.5.2'
+    compile 'com.jude:rollviewpager:1.4.5'
+    compile 'com.android.support:support-v4:26.+'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile files('src/main/lib/xUtils-2.6.10.jar')
+    compile 'com.commit451:PhotoView:1.2.4'
+    compile files('src/main/lib/MobCommons-2017.0608.1618.jar')
+    compile files('src/main/lib/MobTools-2017.0608.1618.jar')
+    compile files('src/main/lib/ShareSDK-Core-3.0.0.jar')
+    compile files('src/main/lib/ShareSDK-QQ-3.0.0.jar')
+    compile files('src/main/lib/ShareSDK-QZone-3.0.0.jar')
+    compile files('src/main/lib/ShareSDK-Wechat-3.0.0.jar')
+    compile files('src/main/lib/ShareSDK-Wechat-Core-3.0.0.jar')
+    compile files('src/main/lib/ShareSDK-Wechat-Moments-3.0.0.jar')
+}
