@@ -69,10 +69,14 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), HuoDong_qinglvzheng_Info.class);
-                startActivity(intent);
-               //Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
+                if (!token.equals("")){
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), HuoDong_qinglvzheng_Info.class);
+                    startActivity(intent);
+                    //Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         token = getActivity().getSharedPreferences("user", MODE_PRIVATE).getString("token","");
