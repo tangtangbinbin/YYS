@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="客服QQ:3525149479"/>
     </LinearLayout>
-   <!-- <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -91,8 +91,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开发商："/>
-    </LinearLayout>-->
+            android:text="开发商：成都长青木网络科技有限公司"/>
+    </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -27,6 +27,7 @@ import com.example.administrator.yys.wode.WoDe_CaoGao;
 import com.example.administrator.yys.wode.WoDe_FenSi;
 import com.example.administrator.yys.wode.WoDe_GuShi;
 import com.example.administrator.yys.wode.WoDe_GuanZhu;
+import com.example.administrator.yys.wode.WoDe_QingLvZheng;
 import com.example.administrator.yys.wode.WoDe_SheZhi;
 import com.example.administrator.yys.wode.WoDe_SheZhi_ZiLiao;
 import com.example.administrator.yys.wode.WoDe_ShouChang;
@@ -69,6 +70,7 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
     String token,root;
     TextView username,gexingqianmin;
     MyReceiver receiver;
+    TextView qinglvz;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -77,11 +79,13 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
         gexingqianmin = view.findViewById(R.id.wode_gexinqianmin);
         sharedPreferences = getActivity().getSharedPreferences("user",MODE_PRIVATE);
         root = sharedPreferences.getString("root","");
+        qinglvz = view.findViewById(R.id.wode_qinglvz);
         String name = sharedPreferences.getString("user_name","");
         String qianmin = sharedPreferences.getString("gexingqianmin","");
         if (!qianmin.equals("null")){
             gexingqianmin.setText(qianmin);
         }
+        qinglvz.setOnClickListener(this);
         username.setText(name);
         String userimg = sharedPreferences.getString("user_avatar","");
         img =  view.findViewById(R.id.wode_img);
@@ -166,6 +170,9 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
                     e.printStackTrace();
                 }
             }
+            if (msg.what==2&&msg.obj!=null){
+                Log.w("msg2",msg.obj.toString());
+            }
         }
     };
     private void init() {
@@ -179,6 +186,7 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
                 msg2.obj = result;
                 msg2.what =1;
                 handler.sendMessage(msg2);
+
             }
         }.start();
     }
@@ -236,6 +244,11 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
                 Intent intent10 = new Intent();
                 intent10.setClass(getActivity(), WoDe_SheZhi_ZiLiao.class);
                 startActivity(intent10);
+                break;
+            case R.id.wode_qinglvz:
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),WoDe_QingLvZheng.class);
+                startActivity(intent);
                 break;
 
         }

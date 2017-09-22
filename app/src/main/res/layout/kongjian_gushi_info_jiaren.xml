@@ -35,6 +35,13 @@
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:background="@color/huise"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,8 +50,8 @@
         android:gravity="center_vertical"
         android:layout_marginRight="17.6dp">
         <com.example.administrator.yys.view.CircularImage
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/touxiang1"
             android:id="@+id/kongjian_gushi_info_jiaren_touxiang"
             android:adjustViewBounds="true"/>
@@ -69,9 +76,7 @@
             android:background="@drawable/shape_radious_cheng"
             android:textColor="@color/baise"/>
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +85,7 @@
             android:id="@+id/kj_gushi_jiaren_info_text"
             android:orientation="vertical">
 
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

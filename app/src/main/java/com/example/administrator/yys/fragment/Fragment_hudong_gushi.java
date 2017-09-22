@@ -158,6 +158,18 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+               }
+            }
+            if(msg.what==2){
+                Log.w("msg2",msg.obj.toString());
+                try {
+                    JSONObject obj = new JSONObject(msg.obj.toString());
+                    String code = obj.getString("code");
+                    if (code.equals("1")){
+                        activity.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -268,7 +280,17 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
                 msg2.obj = result;
                 msg2.what =1;
                 handler.sendMessage(msg2);
+
+                String url2 = IP+"lifetime/activity/lovers/getLoversActivity";
+                String  result2 =  new NetWorkRequest().getServiceInfo(url2);
+                Message msg = new Message();
+                msg.what=2;
+                msg.obj = result2;
+                if (msg.obj!=null){
+                    handler.sendMessage(msg);
+                }
             }
         }.start();
+
     }
 }

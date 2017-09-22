@@ -2,22 +2,42 @@ package com.example.administrator.yys.huodong;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.yys.R;
+import com.example.administrator.yys.network.NetWorkRequest;
 import com.example.administrator.yys.view.MyAutoCompleteTextView;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+import static com.example.administrator.yys.utils.IPAddress.IP;
 
 
 /**
@@ -30,6 +50,11 @@ public class HuoDong_qinglvzheng_Make extends Activity {
     EditText edit1,edit2;
     ImageView img;
     TextView pay;
+    String token;
+    String name1,sex1,name2,sex2;
+    String FILEPATH= Environment.getExternalStorageDirectory().getAbsolutePath() + "/youyisheng/";
+    String FILENAME = "qinglv.jpg";
+    boolean issave;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +64,7 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         auto2 = findViewById(R.id.auto2);
         edit1 = findViewById(R.id.huodong_edit1);
         pay = findViewById(R.id.huodong_pay);
+        token = getSharedPreferences("user",MODE_PRIVATE).getString("token","");
         img = findViewById(R.id.huodong_make_img);
         edit2 = findViewById(R.id.huodong_edit2);
         auto1.setInputType(InputType.TYPE_NULL);
@@ -77,6 +103,31 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name1 = edit1.getText().toString().trim();
+                name2 = edit2.getText().toString().trim();
+                if (auto1.getText().toString().trim().equals("男")){
+                    sex1 = "1";
+                }else {
+                    sex1 = "0";
+                }
+                if (auto2.getText().toString().trim().equals("男")){
+                    sex2 = "1";
+                }else {
+                    sex2 = "0";
+                }
+                if (name1.length()<=0 || name2.length()<=0){
+                    Toast.makeText(getApplicationContext(),"名字不能为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (sex1.length()<=0 ||sex2.length()<=0){
+                    Toast.makeText(getApplicationContext(),"性别不能为空",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (issave){
+                    uploadinfo();
+                }else {
+                    Toast.makeText(getApplicationContext(),"图片不存在",Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -84,6 +135,73 @@ public class HuoDong_qinglvzheng_Make extends Activity {
 
     }
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1&&msg.obj!=null){
+                Log.w("msg1",msg.obj.toString());
+                try {
+                    JSONObject obj = new JSONObject(msg.obj.toString());
+                    String code = obj.getString("code");
+                    if (code.equals("1")){
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    };
+
+    public void uploadinfo(){
+        String url = IP+"lifetime/activity/lovers/joinActivity";
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("token",token);
+        Log.w("token",token);
+        params.addBodyParameter("manName",name1);
+        params.addBodyParameter("manSex",sex1);
+        params.addBodyParameter("ladyName",name2);
+        params.addBodyParameter("ladySex",sex2);
+        File file = new File(FILEPATH+FILENAME);
+        if (file.exists()){
+            params.addBodyParameter("pricture",file);
+        }
+        HttpUtils httputils = new HttpUtils();
+        httputils.send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                Log.w("qinglvz:",responseInfo.result.toString());
+                try {
+                    JSONObject obj = new JSONObject(responseInfo.result.toString());
+                    String code = obj.getString("code");
+                    if (code.equals("1")){
+                        new Thread(){
+                            @Override
+                            public void run() {
+                                super.run();
+                                String url = IP+"lifetime/activity/lovers/payment?token="+token;
+                                String  result =  new NetWorkRequest().getServiceInfo(url);
+                                Message msg = new Message();
+                                msg.obj = result;
+                                msg.what = 1;
+                                handler.sendMessage(msg);
+                            }
+                        }.start();
+                    }
+                    Toast.makeText(getApplicationContext(),obj.getString("message"),Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+                Log.w("addimgfaile",s.toString());
+            }
+        });
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,9 +214,23 @@ public class HuoDong_qinglvzheng_Make extends Activity {
             Bundle extras = data.getExtras();
             Bitmap bitmap = extras.getParcelable("data");
             img.setImageBitmap( bitmap);
+            issave = saveBitmap2file(bitmap,FILENAME);
         }
     }
 
+   public boolean  saveBitmap2file(Bitmap bmp,String filename){
+        Bitmap.CompressFormat format= Bitmap.CompressFormat.JPEG;
+        int quality = 100;
+        OutputStream stream = null;
+        try {
+            stream = new FileOutputStream(FILEPATH+filename);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return bmp.compress(format, quality, stream);
+    }
     private void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -113,11 +245,5 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         intent.putExtra("return-data", true);
         startActivityForResult(intent, 5);
     }
-    private String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
+
 }

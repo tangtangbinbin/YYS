@@ -217,6 +217,8 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".huodong.HuoDong_qinglvzheng_Info"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".wode.WoDe_QingLvZheng"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".huodong.HuoDong_qinglvzheng_Make"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".kongjian.KongJian_LuYin"
