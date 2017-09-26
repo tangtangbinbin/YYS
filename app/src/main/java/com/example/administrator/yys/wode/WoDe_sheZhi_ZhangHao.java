@@ -28,16 +28,21 @@ public class WoDe_sheZhi_ZhangHao extends Activity implements View.OnClickListen
         bangding = findViewById(R.id.wd_shezhi_zhanghao_bangding_lin);
         xiugai = findViewById(R.id.wd_shezhi_update_lin);
         phonenumber = findViewById(R.id.wd_shezhi_number);
-        String mobile = getSharedPreferences("user",MODE_PRIVATE).getString("mobile","");
-        if (mobile.length()==11){
-            phonenumber.setText("已绑定（"+mobile+")");
-        }
         zhanghao = findViewById(R.id.wode_shezhi_zhanghao);
         loginname = getSharedPreferences("user",MODE_PRIVATE).getString("login_name","");
         zhanghao.setText(loginname);
         fanhui.setOnClickListener(this);
         bangding.setOnClickListener(this);
         xiugai.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String mobile = getSharedPreferences("user",MODE_PRIVATE).getString("mobile","");
+        if (mobile.length()==11){
+            phonenumber.setText("已绑定（"+mobile+")");
+        }
     }
 
     @Override

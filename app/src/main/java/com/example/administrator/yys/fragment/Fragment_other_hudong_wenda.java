@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -106,6 +107,11 @@ public class Fragment_other_hudong_wenda extends MyFragment implements SwipeRefr
                                     startActivity(intent);
                                 }
                             });
+                        }else {
+                            String[] strs = {"还没有内容哦~"};
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.nomessage_item,strs);
+                            lv.setAdapter(adapter);
+                            lv.setDivider(null);
                         }
 
                     }

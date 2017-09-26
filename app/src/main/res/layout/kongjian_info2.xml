@@ -66,7 +66,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
 
         android:background="@drawable/shape_border_gray"
@@ -79,7 +78,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:background="@drawable/shape_radious_black2"
+            android:background="@drawable/shape_radious_black5"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/kj_info_edit"

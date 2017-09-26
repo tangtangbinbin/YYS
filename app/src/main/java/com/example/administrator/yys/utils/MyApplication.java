@@ -1,8 +1,15 @@
 package com.example.administrator.yys.utils;
 
 import android.app.Application;
+import android.content.Context;
+import android.text.TextUtils;
 
 import com.mob.MobSDK;
+import com.tencent.bugly.crashreport.CrashReport;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2017/8/23 0023.
@@ -16,6 +23,15 @@ public class MyApplication extends Application {
     private int musicispause = 0;
     private int musiccurrent = 0;
     private int setpassword = 0;
+    private int needrefresh = 0;
+
+    public int getNeedrefresh() {
+        return needrefresh;
+    }
+
+    public void setNeedrefresh(int needrefresh) {
+        this.needrefresh = needrefresh;
+    }
 
     public int getSetpassword() {
         return setpassword;
@@ -88,5 +104,43 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MobSDK.init(this, this.a(), this.b());
+        Context context = getApplicationContext();
+// 获取当前包名
+        String packageName = context.getPackageName();
+// 获取当前进程名
+        String processName = getProcessName(android.os.Process.myPid());
+// 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        CrashReport.initCrashReport(getApplicationContext(), "622657d06a", true,strategy);
+    }
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
 }

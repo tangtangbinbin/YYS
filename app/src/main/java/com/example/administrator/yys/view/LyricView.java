@@ -82,7 +82,8 @@ public class LyricView extends View {
             }
         }
         else{
-            paint.setTextSize(25);
+
+            paint.setTextSize(PxAndDp.dip2px(getContext(),17));
             canvas.drawText("歌词同步中...", mX, 310, paint);
         }
         super.onDraw(canvas);

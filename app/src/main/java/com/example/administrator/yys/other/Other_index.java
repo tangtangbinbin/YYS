@@ -25,6 +25,7 @@ import com.example.administrator.yys.fragment.Fragment_other_hudong_gushi;
 import com.example.administrator.yys.fragment.Fragment_other_hudong_wenda;
 import com.example.administrator.yys.network.NetWorkRequest;
 import com.example.administrator.yys.utils.AppManager;
+import com.example.administrator.yys.utils.MyApplication;
 import com.example.administrator.yys.utils.MyHandler;
 import com.example.administrator.yys.view.CircularImage;
 
@@ -57,6 +58,7 @@ public class Other_index extends Activity implements View.OnClickListener{
     private List<Fragment> fragments = new ArrayList<>();
 
     private int currentIndex = 0;
+    private int itemnum = 0;
     //当前显示的fragment
     private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
     @Override
@@ -80,7 +82,11 @@ public class Other_index extends Activity implements View.OnClickListener{
         myuserid = getSharedPreferences("user",MODE_PRIVATE).getString("user_id","");
         Intent intent = getIntent();
         userid = intent.getStringExtra("user_id");
-
+        try {
+            itemnum = intent.getIntExtra("itemnum",0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
@@ -115,6 +121,9 @@ public class Other_index extends Activity implements View.OnClickListener{
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (itemnum>0){
+                    MyApplication.getMyApplicationInstance().setNeedrefresh(itemnum);
+                }
                 finish();
             }
         });

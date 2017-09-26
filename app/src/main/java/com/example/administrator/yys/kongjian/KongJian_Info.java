@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ import com.example.administrator.yys.other.Other_index;
 import com.example.administrator.yys.utils.AppManager;
 import com.example.administrator.yys.utils.CheckJsonType;
 import com.example.administrator.yys.utils.MediaManager;
+import com.example.administrator.yys.utils.MyApplication;
 import com.example.administrator.yys.utils.MyHandler;
 import com.example.administrator.yys.utils.ParseJson;
 import com.example.administrator.yys.view.CircularImage;
@@ -58,6 +60,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.example.administrator.yys.R.id.kj_info_yq_lin2;
 import static com.example.administrator.yys.utils.IPAddress.IP;
 
 /**
@@ -123,7 +126,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
         fabiao_img = findViewById(R.id.kj_info_fabiao_img);
         fabiaoluyin_img = findViewById(R.id.kj_info_fabiaoluyin_img);
         shezhi = (TextView) findViewById(R.id.kongjian_shezhi);
-        yaoqing =  findViewById(R.id.kj_info_yq_lin2);
+        yaoqing =  findViewById(kj_info_yq_lin2);
         xiangce = findViewById(R.id.kj_info_xc_lin);
         imm = (InputMethodManager) getApplication().getSystemService(Context.INPUT_METHOD_SERVICE);
         desc = header.findViewById(R.id.kj_info_desc1);
@@ -441,6 +444,10 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                         MyAdapter adapter = new MyAdapter(getApplicationContext());
                         lv.setAdapter(adapter);
                         lv.setSelection(itemnumber);
+                        if (MyApplication.getMyApplicationInstance().getNeedrefresh()!=0){
+                            lv.setSelection(MyApplication.getMyApplicationInstance().getNeedrefresh());
+                            MyApplication.getMyApplicationInstance().setNeedrefresh(0);
+                        }
                         lv.setDivider(null);
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -459,12 +466,18 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                                     intent.putExtra("content", list.get(i - 2).get("content").toString());
                                     intent.putExtra("group_id", list.get(i - 2).get("group_id").toString());
                                     intent.putExtra("user_id", list.get(i - 2).get("user_id").toString());
+                                    intent.putExtra("itemnum", i);
                                     intent.putExtra("group_article_id", list.get(i - 2).get("group_article_id").toString());
                                     intent.putExtra("callbackintent", callbackintent);
                                     startActivity(intent);
                                 }
                             }
                         });
+                    }else {
+                        String[] strs = {"保留你最真实的人生故事"};
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.nomessage_item,strs);
+                        lv.setAdapter(adapter);
+                        lv.setDivider(null);
                     }
 
                 }
@@ -526,6 +539,9 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                     public void handleMessage(Message msg) {
                         super.handleMessage(msg);
                         holder.time.setText(msg.what+" S");
+                        if(msg.what==0){
+                            holder.time.setText(list.get(i).get("sound_time").toString()+" S");
+                        }
                         holder.time.setTextColor(Color.parseColor("#4f4f4f"));
                     }
                 };
@@ -584,6 +600,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                                     Intent intent = new Intent();
                                     intent.setClass(KongJian_Info.this, Other_index.class);
                                     intent.putExtra("user_id",list.get(i).get("user_id"));
+                                    intent.putExtra("itemnum",i);
                                     startActivity(intent);
                                 }
                             });
@@ -606,6 +623,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                                     Intent intent = new Intent();
                                     intent.setClass(KongJian_Info.this, Other_index.class);
                                     intent.putExtra("user_id",list.get(i).get("user_id"));
+                                    intent.putExtra("itemnum",i);
                                     startActivity(intent);
                                 }
                             });
@@ -627,6 +645,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent();
+                                intent.putExtra("itemnum",i);
                                 intent.setClass(KongJian_Info.this, Other_index.class);
                                 intent.putExtra("user_id",list.get(i).get("user_id"));
                                 startActivity(intent);
@@ -671,6 +690,11 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                                 mediaManager.playSound(path, new MediaPlayer.OnCompletionListener() {
                                     @Override
                                     public void onCompletion(MediaPlayer mediaPlayer) {
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         holder.time.setText(list.get(i).get("sound_time").toString()+" S");
                                         mediastatus = 0;
                                     }
@@ -731,6 +755,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent();
+                                intent.putExtra("itemnum",i);
                                 intent.setClass(KongJian_Info.this, Other_index.class);
                                 intent.putExtra("user_id",list.get(i).get("user_id"));
                                 startActivity(intent);
@@ -754,6 +779,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent();
+                                intent.putExtra("itemnum",i);
                                 intent.setClass(KongJian_Info.this, Other_index.class);
                                 intent.putExtra("user_id",list.get(i).get("user_id"));
                                 startActivity(intent);
@@ -778,6 +804,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent();
+                            intent.putExtra("itemnum",i);
                             intent.setClass(KongJian_Info.this, Other_index.class);
                             intent.putExtra("user_id",list.get(i).get("user_id"));
                             startActivity(intent);
@@ -972,9 +999,9 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-        list.clear();
-        init();
-        activitystatus = 0;
+            list.clear();
+            init();
+            activitystatus = 0;
     }
 
     @Override
@@ -983,6 +1010,7 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
         mediaManager.pause();
         activitystatus = 1;
     }
+
 
     @Override
     public void onClick(View view) {
@@ -1059,6 +1087,14 @@ public class KongJian_Info extends Activity implements View.OnClickListener{
                 intent9.putExtra("group_id",groupId);
                 intent9.setClass(KongJian_Info.this,KongJian_YaoQing.class);
                 startActivity(intent9);
+                break;
+
+            case R.id.kj_info_yq_lin2:
+                Intent intent10 = new Intent();
+                intent10.putExtra("default_id",defaultid);
+                intent10.putExtra("group_id",groupId);
+                intent10.setClass(KongJian_Info.this,KongJian_YaoQing.class);
+                startActivity(intent10);
                 break;
         }
 

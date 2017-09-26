@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.administrator.yys.R;
 import com.example.administrator.yys.utils.AppManager;
+import com.example.administrator.yys.utils.MyApplication;
 import com.example.administrator.yys.utils.MyHandler;
 
 import org.xutils.x;
@@ -52,7 +53,7 @@ public class KongJian_GuShi_GeRen extends Activity {
         lin = findViewById(R.id.kj_gushi_info_text);
         fanhui = findViewById(R.id.kongjian_gushi_info_geren_fanhui);
         xiugai = findViewById(R.id.kongjian_gushi_info_geren_xiugai);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         callbackintent = intent.getParcelableExtra("callbackintent");
         content = intent.getStringExtra("content");
         group_id = intent.getStringExtra("group_id");
@@ -72,6 +73,7 @@ public class KongJian_GuShi_GeRen extends Activity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MyApplication.getMyApplicationInstance().setNeedrefresh(intent.getIntExtra("itemnum",0));
                 finish();
             }
         });

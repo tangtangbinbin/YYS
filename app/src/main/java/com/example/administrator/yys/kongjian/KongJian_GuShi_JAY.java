@@ -25,6 +25,7 @@ import com.example.administrator.yys.R;
 import com.example.administrator.yys.network.NetWorkRequest;
 import com.example.administrator.yys.other.Other_index;
 import com.example.administrator.yys.utils.AppManager;
+import com.example.administrator.yys.utils.MyApplication;
 import com.example.administrator.yys.utils.MyHandler;
 import com.example.administrator.yys.view.CircularImage;
 
@@ -54,7 +55,7 @@ public class KongJian_GuShi_JAY extends Activity implements View.OnClickListener
     TextView name;
     String token;
     Button guanzhu;
-
+    Intent intent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +73,7 @@ public class KongJian_GuShi_JAY extends Activity implements View.OnClickListener
         guanzhu.setOnClickListener(this);
         token = getSharedPreferences("user",MODE_PRIVATE).getString("token","");
 
-        Intent intent = getIntent();
+        intent = getIntent();
         content = intent.getStringExtra("content");
         group_id = intent.getStringExtra("group_id");
         user_id = intent.getStringExtra("user_id");
@@ -245,6 +246,7 @@ public class KongJian_GuShi_JAY extends Activity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.kongjian_gushi_info_jiaren_fanhui:
+                MyApplication.getMyApplicationInstance().setNeedrefresh(intent.getIntExtra("itemnum",0));
                 finish();
                 break;
             case R.id.kongjian_gushi_info_jiaren_touxiang://头像

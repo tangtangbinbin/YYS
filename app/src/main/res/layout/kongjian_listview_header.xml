@@ -31,6 +31,7 @@
             android:layout_marginTop="5dp"
             android:id="@+id/kj_info_desc1"
             android:text="用一句话来描述空间吧!"
+            android:layout_marginBottom="8dp"
             android:textSize="14dp"/>
     </LinearLayout>
 
