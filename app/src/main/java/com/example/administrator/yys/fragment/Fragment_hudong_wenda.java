@@ -83,7 +83,7 @@ public class Fragment_hudong_wenda extends MyFragment implements SwipeRefreshLay
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==1){
+            if (msg.what==1 && msg.obj!=null){
                 Log.w("getanswer",msg.obj.toString());
                 try {
                     JSONObject obj = new JSONObject(msg.obj.toString());

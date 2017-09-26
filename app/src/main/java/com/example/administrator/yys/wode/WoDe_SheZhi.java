@@ -27,7 +27,7 @@ import java.io.File;
 public class WoDe_SheZhi extends Activity implements View.OnClickListener{
     LinearLayout fanhui;
     TextView xieyi;
-    LinearLayout ziliao,tuichu,zhanghao,huancun,guanyu;
+    LinearLayout ziliao,tuichu,zhanghao,huancun,guanyu,fenxiang;
     TextView huancuntext;
     String musicdir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/YYSMusic";//音乐缓存
     String picdir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/youyisheng";//图片，录音缓存
@@ -42,6 +42,7 @@ public class WoDe_SheZhi extends Activity implements View.OnClickListener{
         AppManager.getAppManager().addActivity(this);
         xieyi = findViewById(R.id.wode_shezhi_xieyi);
         huancun = findViewById(R.id.wd_shezhi_huancun_lin);
+        fenxiang = findViewById(R.id.wd_fenxiang_lin);
         guanyu = findViewById(R.id.wd_shezhi_banben_lin);
         huancuntext = findViewById(R.id.wode_huanchun_text);
         musicname = getSharedPreferences("music",MODE_PRIVATE).getString("musicName","");
@@ -53,6 +54,7 @@ public class WoDe_SheZhi extends Activity implements View.OnClickListener{
         ziliao.setOnClickListener(this);
         xieyi.setOnClickListener(this);
         tuichu.setOnClickListener(this);
+        fenxiang.setOnClickListener(this);
         zhanghao.setOnClickListener(this);
         init();
     }
@@ -167,6 +169,11 @@ public class WoDe_SheZhi extends Activity implements View.OnClickListener{
                 Intent intent4 = new Intent();
                 intent4.setClass(WoDe_SheZhi.this,WoDe_GuanYu.class);
                 startActivity(intent4);
+                break;
+            case R.id.wd_fenxiang_lin:
+                Intent intent5 = new Intent();
+                intent5.setClass(WoDe_SheZhi.this,WoDe_FenXiang.class);
+                startActivity(intent5);
                 break;
         }
     }

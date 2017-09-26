@@ -128,22 +128,28 @@ public class Register extends Activity {
                             @Override
                             public void handleMessage(Message msg) {
                                 super.handleMessage(msg);
+                                if (msg.what == 1 && msg.obj != null) {
                                 JSONObject jsonObject = null;
                                 try {
                                     jsonObject = new JSONObject(msg.obj.toString());
                                     int codeNum = Integer.parseInt(jsonObject.get("code").toString());
                                     String message = jsonObject.get("message").toString();
-                                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                                    if (codeNum==1){
+                                    register_btn.setClickable(true);
+                                    register_btn.setBackgroundResource(R.drawable.shape_radious_login);
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                    if (codeNum == 1) {
                                         Intent intent = new Intent();
-                                        intent.setClass(Register.this,Login.class);
+                                        intent.setClass(Register.this, Login.class);
                                         startActivity(intent);
                                     }
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
+                            }
+                            if (msg.what==2){
+                                register_btn.setClickable(false);
+                                register_btn.setBackgroundResource(R.drawable.shape_radious_login2);
+                            }
                             }
                         };
 
@@ -151,10 +157,14 @@ public class Register extends Activity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
+                                Message msg2 = new Message();
+                                msg2.what=2;
+                                handler.sendMessage(msg2);
                                 String url = IP+"lifetime/user/account/register?loginName="+acc+"&password="+pass;
                                String  result =  new NetWorkRequest().getServiceInfo(url);
                                 Message msg = new Message();
                                 msg.obj = result;
+                                msg.what=1;
                                 handler.sendMessage(msg);
                             }
                         }).start();

@@ -29,6 +29,7 @@ import com.example.administrator.yys.network.NetWorkRequest;
 import com.example.administrator.yys.utils.MyHandler;
 import com.example.administrator.yys.utils.ParseJson;
 import com.example.administrator.yys.view.MyFragment;
+import com.example.administrator.yys.wode.WoDe_QingLvZheng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +57,7 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
     int itemnumber = 0;
     ImageView activity;
     View header;
+    int isjoin = 0;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +73,11 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
             public void onClick(View view) {
                 if (!token.equals("")){
                     Intent intent = new Intent();
-                    intent.setClass(getActivity(), HuoDong_qinglvzheng_Info.class);
+                    if (isjoin==1){
+                        intent.setClass(getActivity(), WoDe_QingLvZheng.class);
+                    }else {
+                        intent.setClass(getActivity(), HuoDong_qinglvzheng_Info.class);
+                    }
                     startActivity(intent);
                     //Toast.makeText(getActivity(),"敬请期待！",Toast.LENGTH_SHORT).show();
                 }else {
@@ -99,9 +105,24 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
         swipe.setColorSchemeColors(Color.GREEN,Color.BLUE,Color.RED);
 
         init();
+        checkJoin();
         return view;
     }
 
+    public void checkJoin(){
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                String url2 = IP+"lifetime/activity/lovers/isJoin?token="+token;
+                String  result2 =  new NetWorkRequest().getServiceInfo(url2);
+                Message msg = new Message();
+                msg.obj = result2;
+                msg.what = 3;
+                handler.sendMessage(msg);
+            }
+        }.start();
+    }
     Handler handler = new MyHandler(getActivity()){
         @Override
         public void handleMessage(Message msg) {
@@ -167,6 +188,17 @@ public class Fragment_hudong_gushi extends MyFragment implements SwipeRefreshLay
                     String code = obj.getString("code");
                     if (code.equals("1")){
                         activity.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (msg.what==3){
+                try {
+                    JSONObject obj = new JSONObject(msg.obj.toString());
+                    String code = obj.getString("code");
+                    if (code.equals("1")){
+                        isjoin = 1;
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

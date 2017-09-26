@@ -3,11 +3,13 @@ package com.example.administrator.yys.huodong;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.Log;
@@ -34,8 +36,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 import static com.example.administrator.yys.utils.IPAddress.IP;
 
@@ -54,6 +54,7 @@ public class HuoDong_qinglvzheng_Make extends Activity {
     String name1,sex1,name2,sex2;
     String FILEPATH= Environment.getExternalStorageDirectory().getAbsolutePath() + "/youyisheng/";
     String FILENAME = "qinglv.jpg";
+    Uri imguri = Uri.fromFile(new File(FILEPATH+FILENAME));
     boolean issave;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -202,6 +203,20 @@ public class HuoDong_qinglvzheng_Make extends Activity {
             }
         });
     }
+    private Bitmap decodeUriAsBitmap(Uri uri) {
+                Bitmap bitmap = null;
+                try {
+                     // 先通过getContentResolver方法获得一个ContentResolver实例，
+                      // 调用openInputStream(Uri)方法获得uri关联的数据流stream
+                       // 把上一步获得的数据流解析成为bitmap
+                       bitmap = BitmapFactory.decodeStream((getContentResolver().openInputStream(uri)));
+                    } catch (FileNotFoundException e) {
+                       e.printStackTrace();
+                      return null;
+                   }
+               return bitmap;
+           }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -211,14 +226,16 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         }
         if (requestCode==5&&data!=null){
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            Bundle extras = data.getExtras();
-            Bitmap bitmap = extras.getParcelable("data");
-            img.setImageBitmap( bitmap);
-            issave = saveBitmap2file(bitmap,FILENAME);
+            if (imguri!=null){
+                Bitmap bitmap = decodeUriAsBitmap(imguri);
+                img.setImageBitmap( bitmap);
+                issave = true;
+            }
+
         }
     }
 
-   public boolean  saveBitmap2file(Bitmap bmp,String filename){
+   /*public boolean  saveBitmap2file(Bitmap bmp,String filename){
         Bitmap.CompressFormat format= Bitmap.CompressFormat.JPEG;
         int quality = 100;
         OutputStream stream = null;
@@ -230,7 +247,7 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         }
 
         return bmp.compress(format, quality, stream);
-    }
+    }*/
     private void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -240,9 +257,11 @@ public class HuoDong_qinglvzheng_Make extends Activity {
         intent.putExtra("aspectX", 3);
         intent.putExtra("aspectY", 2);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 200);
-        intent.putExtra("return-data", true);
+        intent.putExtra("outputX", 900);
+        intent.putExtra("outputY", 600);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,imguri);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());//图片格式
+        intent.putExtra("return-data", false);
         startActivityForResult(intent, 5);
     }
 

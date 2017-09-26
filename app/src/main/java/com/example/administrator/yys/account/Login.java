@@ -104,47 +104,55 @@ public class Login extends Activity {
                         @Override
                         public void handleMessage(Message msg) {
                             super.handleMessage(msg);
-                            JSONObject jsonObject = null;
-                            try {
-                                Log.w("loginmess:",msg.obj.toString());
-                                jsonObject = new JSONObject(msg.obj.toString());
-                                int code = Integer.parseInt(jsonObject.get("code").toString());
-                                String message = jsonObject.get("message").toString();
-                                if (code==1){
-                                JSONObject jsonroot = jsonObject.getJSONObject("constant");
-                                JSONObject jsoninfo = jsonObject.getJSONObject("info");
-                                String token = jsonObject.get("token").toString();
-                                String root = jsonroot.getString("resourceServer");
-                                String user_name= jsoninfo.getString("user_name");
-                                String user_id= jsoninfo.getString("user_id");
-                                Log.w("登录获取到的userid",user_id);
-                                String login_name = jsoninfo.getString("login_name");
-                                String user_img = jsoninfo.getString("user_avatar");
-                                String mobile = jsoninfo.getString("mobile");
-                                String gexingqianmin = jsoninfo.getString("personal_signature");
-                                Log.w("登录信息：",jsonObject.toString());
+                            if (msg.what==1&&msg.obj!=null) {
+                                JSONObject jsonObject = null;
+                                try {
+                                    Log.w("loginmess:", msg.obj.toString());
+                                    jsonObject = new JSONObject(msg.obj.toString());
+                                    int code = Integer.parseInt(jsonObject.get("code").toString());
+                                    String message = jsonObject.get("message").toString();
+                                    if (code == 1) {
+                                        JSONObject jsonroot = jsonObject.getJSONObject("constant");
+                                        JSONObject jsoninfo = jsonObject.getJSONObject("info");
+                                        String token = jsonObject.get("token").toString();
+                                        String root = jsonroot.getString("resourceServer");
+                                        String user_name = jsoninfo.getString("user_name");
+                                        String user_id = jsoninfo.getString("user_id");
+                                        Log.w("登录获取到的userid", user_id);
+                                        String login_name = jsoninfo.getString("login_name");
+                                        String user_img = jsoninfo.getString("user_avatar");
+                                        String mobile = jsoninfo.getString("mobile");
+                                        String gexingqianmin = jsoninfo.getString("personal_signature");
+                                        Log.w("登录信息：", jsonObject.toString());
 
-                                    //登录成功则保存帐号
-                                    SharedPreferences.Editor editor = userinfo.edit();
-                                    editor.putString("token",token);
-                                    editor.putString("root",root);
-                                    editor.putString("user_name",user_name);
-                                    editor.putString("user_id",user_id);
-                                    editor.putString("login_name",login_name);
-                                    editor.putString("user_img",root+user_img);
-                                    editor.putString("user_avatar",jsoninfo.getString("user_avatar"));
-                                    editor.putString("mobile",mobile);
-                                    editor.putString("gexingqianmin",gexingqianmin);
-                                    editor.commit();
+                                        //登录成功则保存帐号
+                                        SharedPreferences.Editor editor = userinfo.edit();
+                                        editor.putString("token", token);
+                                        editor.putString("root", root);
+                                        editor.putString("user_name", user_name);
+                                        editor.putString("user_id", user_id);
+                                        editor.putString("login_name", login_name);
+                                        editor.putString("user_img", root + user_img);
+                                        editor.putString("user_avatar", jsoninfo.getString("user_avatar"));
+                                        editor.putString("mobile", mobile);
+                                        editor.putString("gexingqianmin", gexingqianmin);
+                                        editor.commit();
 
-                                    Intent intent = new Intent();
-                                    intent.setClass(Login.this,MainActivity.class);
-                                    intent.putExtra("index","shouye");
-                                    startActivity(intent);
+                                        Intent intent = new Intent();
+                                        intent.setClass(Login.this, MainActivity.class);
+                                        intent.putExtra("index", "shouye");
+                                        startActivity(intent);
+                                    }
+                                    login_btn.setClickable(true);
+                                    login_btn.setBackgroundResource(R.drawable.shape_radious_login);
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            }
+                            if (msg.what==2){
+                                login_btn.setClickable(false);
+                                login_btn.setBackgroundResource(R.drawable.shape_radious_login2);
                             }
                         }
                     };
@@ -153,10 +161,14 @@ public class Login extends Activity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            Message msg2 = new Message();
+                            msg2.what=2;
+                            handler.sendMessage(msg2);
                             String url = IP+"lifetime/user/account/login?loginName="+account+"&password="+pass;
                             String  result =  new NetWorkRequest().getServiceInfo(url);
                             Message msg = new Message();
                             msg.obj = result;
+                            msg.what=1;
                             handler.sendMessage(msg);
                         }
                     }).start();

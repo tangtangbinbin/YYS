@@ -70,7 +70,7 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
     String token,root;
     TextView username,gexingqianmin;
     MyReceiver receiver;
-    TextView qinglvz;
+    TextView qinglvz,qinglvz_temp;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -80,6 +80,7 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
         sharedPreferences = getActivity().getSharedPreferences("user",MODE_PRIVATE);
         root = sharedPreferences.getString("root","");
         qinglvz = view.findViewById(R.id.wode_qinglvz);
+        qinglvz_temp = view.findViewById(R.id.wode_qinglvz_temp);
         String name = sharedPreferences.getString("user_name","");
         String qianmin = sharedPreferences.getString("gexingqianmin","");
         if (!qianmin.equals("null")){
@@ -172,6 +173,16 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
             }
             if (msg.what==2&&msg.obj!=null){
                 Log.w("msg2",msg.obj.toString());
+                try {
+                    JSONObject obj = new JSONObject(msg.obj.toString());
+                    String code = obj.getString("code");
+                    if (code.equals("1")){
+                        qinglvz.setVisibility(View.VISIBLE);
+                        qinglvz_temp.setVisibility(View.VISIBLE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };
@@ -187,6 +198,12 @@ public class Fragment_wode extends MyFragment implements View.OnClickListener{
                 msg2.what =1;
                 handler.sendMessage(msg2);
 
+                String url2 = IP+"lifetime/activity/lovers/isJoin?token="+token;
+                String  result2 =  new NetWorkRequest().getServiceInfo(url2);
+                Message msg = new Message();
+                msg.obj = result2;
+                msg.what = 2;
+                handler.sendMessage(msg);
             }
         }.start();
     }

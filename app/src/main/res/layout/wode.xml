@@ -28,6 +28,8 @@
             android:orientation="horizontal">
         <TextView
             android:layout_width="45dp"
+            android:id="@+id/wode_qinglvz_temp"
+            android:visibility="gone"
             android:layout_height="5dp" />
         <com.example.administrator.yys.view.CircularImage
             android:layout_width="80dp"
@@ -39,6 +41,7 @@
                 android:gravity="center"
                 android:layout_height="55dp"
                 android:layout_marginLeft="20dp"
+                android:visibility="gone"
                 android:background="@drawable/shape_radious_cheng5"
                 android:textSize="13sp"
                 android:id="@+id/wode_qinglvz"

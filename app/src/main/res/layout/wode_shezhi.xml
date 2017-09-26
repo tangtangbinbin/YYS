@@ -135,6 +135,29 @@
             android:layout_marginRight="17dp"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:id="@+id/wd_fenxiang_lin"
+        android:background="@drawable/shape_border_gray"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享软件"
+            android:layout_marginLeft="17dp"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/go"
+            android:layout_marginRight="17dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
