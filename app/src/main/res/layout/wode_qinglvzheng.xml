@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/huodong_qinglv_beijing"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:id="@+id/qinglvzheng_fanhui"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="31dp"
+                android:src="@mipmap/fanhui"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical"
+        android:background="@color/huise"
+        android:id="@+id/wode_qinglvzheng_img"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:id="@+id/qinglvzheng_saveimg"
+        android:textColor="@color/baise"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="保存到手机"
+        android:background="@drawable/shape_radious_cheng"/>
+</LinearLayout>
